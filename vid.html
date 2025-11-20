@@ -1,0 +1,107 @@
+<!doctype html>
+
+<html lang="en" class="h-full bg-black">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cinematic Drone Showcase – Multi‑Video</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style> body { font-family: Inter, sans-serif; } </style>
+</head>
+<body class="h-full p-10 text-zinc-200 bg-black"><div class="w-full max-w-5xl mx-auto" id="app">
+  <!-- Video Container -->
+  <div class="bg-black h-72 flex items-center justify-center overflow-hidden">
+    <video controls preload="metadata" id="videoPlayer" class="w-full h-full object-contain bg-black">
+      <source id="videoSource" src="1.mp4" type="video/mp4" />
+    </video>
+  </div>  <!-- Title & Category -->  <div class="text-center mt-6">
+    <h1 id="title" class="text-3xl font-bold">Comfort = Poison</h1>
+    <p id="category" class="text-sm tracking-widest text-zinc-400">Insta Reel</p>
+  </div>  <!-- Grid -->  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8"><!-- Pricing -->
+<div class="p-5 rounded-xl bg-white/5 border border-white/10 shadow-md">
+  <h3 class="text-sm font-semibold mb-3">Price Range<span id="price" class="float-right font-semibold text-zinc-200">₹700 - ₹1500</span></h3>
+</div>
+
+<!-- Review -->
+<div class="p-5 rounded-xl bg-white/5 border border-white/10 shadow-md">
+  <div class="flex gap-3 items-center">
+    <div class="w-12 h-12 rounded-full bg-gradient-to-b from-purple-500 to-sky-400 flex items-center justify-center font-bold text-zinc-900">RV</div>
+    <div>
+      <p id="reviewerName" class="font-bold">Satyam Sir</p>
+      <p class="text-yellow-400">★★★★★</p>
+    </div>
+  </div>
+  <p id="reviewText" class="text-zinc-400 text-sm mt-3">"Smoothness at its peak"</p>
+</div>
+
+<!-- Details -->
+<div class="p-5 rounded-xl bg-white/5 border border-white/10 shadow-md">
+  <h3 class="text-sm font-semibold mb-3">Project Details</h3>
+  <p class="flex justify-between text-zinc-400 text-sm"><span>Style:</span><span id="style" class="text-zinc-200 font-semibold">Motion Graphics</span></p>
+  <p class="flex justify-between text-zinc-400 text-sm"><span>Tools:</span><span id="tools" class="text-zinc-200 font-semibold">Alight Motion</span></p>
+  <p class="flex justify-between text-zinc-400 text-sm"><span>Duration:</span><span id="duration" class="text-zinc-200 font-semibold">7 hr</span></p>
+</div>
+
+  </div>  <!-- Navigation Buttons -->  <div class="flex justify-center gap-4 mt-10">
+    <button onclick="prevVideo()" class="px-5 py-2 rounded-full bg-white/10 text-zinc-300 flex items-center gap-2">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18L9 12L15 6"/></svg>
+      Previous
+    </button><button onclick="nextVideo()" class="px-5 py-2 rounded-full bg-gradient-to-r from-purple-500 to-sky-400 text-zinc-900 font-semibold flex items-center gap-2">
+  Next
+  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6L15 12L9 18"/></svg>
+</button>
+
+  </div></div><script>
+const videos = [
+  {
+    src: "1.mp4",
+    title: "Comfort = Poison",
+    category: "Insta reel",
+    price: "₹700 - ₹1500",
+    reviewer: "Satyam Sir",
+    review: "Smoothness at its peak",
+    style: "Motion Graphics",
+    tools: "Alight Motion",
+    duration: "7 hr"
+  },
+  {
+    src: "2.mp4",
+    title: "AI in Coding",
+    category: "Coding & Tech",
+    price: "₹2500",
+    reviewer: "Codecandyy",
+    review: "Nice edit at an affordable price",
+    style: "Mixed",
+    tools: "Alight Motion",
+    duration: "4-5 day"
+  }
+];
+
+let currentIndex = 0;
+
+function updateDisplay() {
+  const v = videos[currentIndex];
+  document.getElementById("videoSource").src = v.src;
+  document.getElementById("videoPlayer").load();
+  document.getElementById("title").innerText = v.title;
+  document.getElementById("category").innerText = v.category;
+  document.getElementById("price").innerText = v.price;
+  document.getElementById("reviewerName").innerText = v.reviewer;
+  document.getElementById("reviewText").innerText = '"' + v.review + '"';
+  document.getElementById("style").innerText = v.style;
+  document.getElementById("tools").innerText = v.tools;
+  document.getElementById("duration").innerText = v.duration;
+}
+
+function nextVideo() {
+  currentIndex = (currentIndex + 1) % videos.length;
+  updateDisplay();
+}
+
+function prevVideo() {
+  currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+  updateDisplay();
+}
+</script></body>
+</html>
