@@ -78,7 +78,7 @@ const videos = [
   }
 ];
 
-let currentIndex = 0;
+let currentIndex = localStorage.getItem("videoIndex");
 
 function updateDisplay() {
   const v = videos[currentIndex];
@@ -103,5 +103,6 @@ function prevVideo() {
   currentIndex = (currentIndex - 1 + videos.length) % videos.length;
   updateDisplay();
 }
+  updateDisplay();
 </script></body>
 </html>
